@@ -6,7 +6,17 @@ using System.Threading.Tasks;
 
 namespace COMP003A.ZooManagementSystem
 {
-	internal class Lion
+	/// <summary>
+	/// Showcases a lion, which inherits from the Animal base class.
+	/// </summary>
+	public class Lion : Animal
 	{
+		/// <summary>
+		/// Shows the user of the program what sound a lion makes.
+		/// </summary>
+		public override void MakeSound()
+		{
+			Console.WriteLine("The lion roars!");
+		}
 	}
 }

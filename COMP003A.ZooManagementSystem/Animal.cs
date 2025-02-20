@@ -41,6 +41,6 @@ namespace COMP003A.ZooManagementSystem
 				_species = value;
 			}
 		}
-		MakeSound();
+		public abstract void MakeSound();
 	}
 }
