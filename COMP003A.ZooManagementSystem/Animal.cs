@@ -27,5 +27,20 @@ namespace COMP003A.ZooManagementSystem
 				_name = value;
 			}
 		}
+		/// <summary>
+		/// Obtains animal species.
+		/// </summary>
+		/// <exception cref="ArgumentException">Exception for null or white space text.</exception>
+		public string Species
+		{
+			get => _species;
+			set
+			{
+				if (string.IsNullOrWhiteSpace(value))
+					throw new ArgumentException("Empty and null inputs are invalid, try again.");
+				_species = value;
+			}
+		}
+		MakeSound();
 	}
 }
