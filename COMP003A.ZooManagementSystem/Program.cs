@@ -21,26 +21,26 @@ namespace COMP003A.ZooManagementSystem
 				Console.WriteLine("4. Describe an Animal");
 				Console.WriteLine("5. Exit");
 				Console.Write("\nYour choice: ");
-				string choice = Console.ReadLine();
+				int choice = int.Parse(Console.ReadLine());
 				try
 				{
-					if (choice == "1")
+					if (choice == 1)
 					{
-
+						
 					}
-					else if (choice == "2")
+					else if (choice == 2)
 					{
-
+						
 					}
-					else if (choice == "3")
+					else if (choice == 3)
 					{
-
+						
 					}
-					else if (choice == "4")
+					else if (choice == 4)
 					{
-
+						
 					}
-					else if (choice == "5")
+					else if (choice == 5)
 					{
 						programActive = false;
 						Console.WriteLine("Thank you for using the Zoo Management System!");
