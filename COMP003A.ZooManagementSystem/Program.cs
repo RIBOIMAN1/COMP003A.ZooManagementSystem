@@ -6,39 +6,41 @@
 namespace COMP003A.ZooManagementSystem
 {
 
-	internal class Program
+	public class Program
 	{
 		static void Main(string[] args)
 		{
+			List<Animal> animals = new List<Animal>();
+			ZooUtility utility = new ZooUtility();
 			bool programActive = true;
 			while (programActive)
 			{
-				Console.WriteLine("Welcome to the Zoo Management System!");
-				Console.WriteLine("\nPlease choose an option:");
-				Console.WriteLine("1. Add a Lion");
-				Console.WriteLine("2. Add a Parrot");
-				Console.WriteLine("3. Display All Animals");
-				Console.WriteLine("4. Describe an Animal");
-				Console.WriteLine("5. Exit");
-				Console.Write("\nYour choice: ");
-				int choice = int.Parse(Console.ReadLine());
 				try
 				{
+					Console.WriteLine("Welcome to the Zoo Management System!");
+					Console.WriteLine("\nPlease choose an option:");
+					Console.WriteLine("1. Add a Lion");
+					Console.WriteLine("2. Add a Parrot");
+					Console.WriteLine("3. Display All Animals");
+					Console.WriteLine("4. Describe an Animal");
+					Console.WriteLine("5. Exit");
+					Console.Write("\nYour choice: ");
+					int choice = int.Parse(Console.ReadLine());
 					if (choice == 1)
 					{
-						
+						AddAnimal(animals, new Lion());
 					}
 					else if (choice == 2)
 					{
-						
+						AddAnimal(animals, new Parrot());
 					}
 					else if (choice == 3)
 					{
-						
+						DisplayAllAnimals(animals);
 					}
 					else if (choice == 4)
 					{
-						
+						DescribeAnimalMenu(utility);
 					}
 					else if (choice == 5)
 					{
@@ -55,6 +57,20 @@ namespace COMP003A.ZooManagementSystem
 					Console.WriteLine($"Error: {ex.Message}");
 				}
 			}
+		}
+		/// <summary>
+		/// Adds animal to zoo.
+		/// </summary>
+		/// <param name="animals">Animal list</param>
+		/// <param name="animal">Animal to add</param>
+		private static void AddAnimal(List<Animal> animals, Animal animal)
+		{
+			Console.Write($"Enter the name of the {animal.GetType().Name.ToLower()}: ");
+			animal.Name = Console.ReadLine();
+			Console.Write($"Enter the name of the {animal.GetType().Name.ToLower()}: ");
+			animal.Species = Console.ReadLine();
+			animals.Add(animal);
+			Console.WriteLine($"\n{animal.GetType().Name} added successfully!");
 		}
 	}
 }
