@@ -13,6 +13,17 @@ namespace COMP003A.ZooManagementSystem
 	{
 		private string _name;
 		private string _species;
+		private int _age;
+		public int Age
+		{
+			get => _age;
+			set
+			{
+				if (value < 0)
+					throw new ArgumentException("The age cannot be less than 0, try again.");
+				_age = value;
+			}
+		}
 		/// <summary>
 		/// Obtains animal name.
 		/// </summary>

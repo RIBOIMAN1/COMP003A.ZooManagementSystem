@@ -13,11 +13,11 @@ namespace COMP003A.ZooManagementSystem
 			List<Animal> animals = new List<Animal>();
 			ZooUtility utility = new ZooUtility();
 			bool programActive = true;
+			Console.WriteLine("Welcome to the Zoo Management System!");
 			while (programActive)
 			{
 				try
 				{
-					Console.WriteLine("Welcome to the Zoo Management System!");
 					Console.WriteLine("\nPlease choose an option:");
 					Console.WriteLine("1. Add a Lion");
 					Console.WriteLine("2. Add a Parrot");
@@ -40,7 +40,7 @@ namespace COMP003A.ZooManagementSystem
 					}
 					else if (choice == 4)
 					{
-						DescribeAnimalMenu(utility);
+						DescribeAnimalMenu(animals, utility);
 					}
 					else if (choice == 5)
 					{
@@ -70,6 +70,23 @@ namespace COMP003A.ZooManagementSystem
 			Console.Write($"Enter the species of the {animal.GetType().Name.ToLower()}: ");
 			animal.Species = Console.ReadLine();
 			animals.Add(animal);
+			Console.Write($"Enter the age of the {animal.GetType().Name.ToLower()}: ");
+			int age;
+			if (int.TryParse(Console.ReadLine(), out age))
+			{
+				if (age >= 0)
+				{
+					animal.Age = age;
+				}
+				else
+				{
+					throw new ArgumentException("The age cannot be less than 0, try again.");
+				}
+			}
+			else
+			{
+				throw new ArgumentException("This number is invalid, try again.");
+			}
 			Console.WriteLine($"\n{animal.GetType().Name} added successfully!");
 		}
 		/// <summary>
@@ -96,30 +113,28 @@ namespace COMP003A.ZooManagementSystem
 		/// Handles shown details for animals.
 		/// </summary>
 		/// <param name="utility">Describes animals using ZooUtility.</param>
-		private static void DescribeAnimalMenu(ZooUtility utility)
+		private static void DescribeAnimalMenu(List<Animal> animals, ZooUtility utility)
 		{
+			if (animals.Count == 0)
+			{
+				Console.WriteLine("\nThere are no animals in the zoo yet.");
+				return;
+			}
 			Console.WriteLine("\nPick an animal to describe below:");
-			Console.WriteLine("1. Lion");
-			Console.WriteLine("2. Parrot");
+			for (int i = 0; i < animals.Count; i++)
+			{
+				Console.WriteLine($"{i + 1}. {animals[i].Name} ({animals[i].Species})");
+			}
 			Console.Write("\nYour choice: ");
 			int choice = int.Parse(Console.ReadLine());
-			Console.Write("What is the animal's name? ");
-			string name = Console.ReadLine();
-			Console.Write("What is the animal's species? ");
-			string species = Console.ReadLine();
-			Console.Write("What is the animal's age? ");
-			int age = int.Parse(Console.ReadLine());
-			if (age < 0)
+			if (choice > 0 && choice <= animals.Count)
 			{
-				throw new ArgumentException("The age cannot be less than 0, try again.");
-			}
-			if (choice == 1 || choice == 2)
-			{
-				utility.DescribeAnimal(name, species, age);
+				Animal selectedAnimal = animals[choice - 1];
+				utility.DescribeAnimal(selectedAnimal.Name, selectedAnimal.Species, selectedAnimal.Age);
 			}
 			else
 			{
-				Console.WriteLine("This is an invalid choice of animal, try again.");
+				Console.WriteLine("Invalid choice, please try again.");
 			}
 		}
 	}
