@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace COMP003A.ZooManagementSystem
 {
-	internal class ZooUtility
+	public class ZooUtility
 	{
 		/// <summary>
 		/// Uses an animal's name to describe it.

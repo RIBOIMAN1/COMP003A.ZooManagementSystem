@@ -103,19 +103,19 @@ namespace COMP003A.ZooManagementSystem
 			Console.WriteLine("2. Parrot");
 			Console.Write("\nYour choice: ");
 			int choice = int.Parse(Console.ReadLine());
+			Console.Write("What is the animal's name? ");
+			string name = Console.ReadLine();
+			Console.Write("What is the animal's species? ");
+			string species = Console.ReadLine();
 			Console.Write("What is the animal's age? ");
 			int age = int.Parse(Console.ReadLine());
 			if (age < 0)
 			{
 				throw new ArgumentException("The age cannot be less than 0, try again.");
 			}
-			if (choice == 1)
+			if (choice == 1 || choice == 2)
 			{
-				utility.DescribeAnimal($"Lion", age);
-			}
-			else if (choice == 2)
-			{
-				utility.DescribeAnimal("Parrot", age);
+				utility.DescribeAnimal(name, species, age);
 			}
 			else
 			{
