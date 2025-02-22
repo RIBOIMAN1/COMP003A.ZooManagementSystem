@@ -35,7 +35,7 @@ namespace COMP003A.ZooManagementSystem
 		/// <param name="age">Animal's age</param>
 		public void DescribeAnimal(string name, string species, int age)
 		{
-			Console.WriteLine("DescribeAnimal (name and species):");
+			Console.WriteLine("DescribeAnimal (name, species, and age):");
 			Console.WriteLine($"Animal Name: {name}, Species: {species}, Age: {age} years old");
 		}
 	}

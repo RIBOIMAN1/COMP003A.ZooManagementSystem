@@ -67,10 +67,60 @@ namespace COMP003A.ZooManagementSystem
 		{
 			Console.Write($"Enter the name of the {animal.GetType().Name.ToLower()}: ");
 			animal.Name = Console.ReadLine();
-			Console.Write($"Enter the name of the {animal.GetType().Name.ToLower()}: ");
+			Console.Write($"Enter the species of the {animal.GetType().Name.ToLower()}: ");
 			animal.Species = Console.ReadLine();
 			animals.Add(animal);
 			Console.WriteLine($"\n{animal.GetType().Name} added successfully!");
+		}
+		/// <summary>
+		/// Displays a list of animals in the zoo and shows their details.
+		/// </summary>
+		/// <param name="animals">Animals to display</param>
+		private static void DisplayAllAnimals(List<Animal> animals)
+		{
+			if (animals.Count == 0)
+			{
+				Console.WriteLine("\nThere are not any animals in the zoo yet.");
+			}
+			else
+			{
+				Console.WriteLine("\nDisplaying all animals:");
+				foreach (var animal in animals)
+				{
+					animal.MakeSound();
+					Console.WriteLine($"({animal.Name}, {animal.Species})");
+				}
+			}
+		}
+		/// <summary>
+		/// Handles shown details for animals.
+		/// </summary>
+		/// <param name="utility">Describes animals using ZooUtility.</param>
+		private static void DescribeAnimalMenu(ZooUtility utility)
+		{
+			Console.WriteLine("\nPick an animal to describe below:");
+			Console.WriteLine("1. Lion");
+			Console.WriteLine("2. Parrot");
+			Console.Write("\nYour choice: ");
+			int choice = int.Parse(Console.ReadLine());
+			Console.Write("What is the animal's age? ");
+			int age = int.Parse(Console.ReadLine());
+			if (age < 0)
+			{
+				throw new ArgumentException("The age cannot be less than 0, try again.");
+			}
+			if (choice == 1)
+			{
+				utility.DescribeAnimal($"Lion", age);
+			}
+			else if (choice == 2)
+			{
+				utility.DescribeAnimal("Parrot", age);
+			}
+			else
+			{
+				Console.WriteLine("This is an invalid choice of animal, try again.");
+			}
 		}
 	}
 }
